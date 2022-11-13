@@ -70,6 +70,6 @@ function rps ($userInpt, $genInpt)
 $genInpt = rand(0,2);
 echo "$genInpt\n"; // Bara så att jag kan see att det fungerar... 
 
-
+ // Fungerar men fungerar inte... Får en undefined variable på $userThrow även fast den används... ?? 
 rpsUser();
 rps($genInpt, $userThrow);
