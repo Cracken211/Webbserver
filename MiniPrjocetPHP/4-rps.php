@@ -1,17 +1,17 @@
 <?php
-function rpsUser ($userThrow)
+function rpsUser ()
 {
-    $userThrow = strtolower(readline("Please enter your desired input. Rock, Paper och Scissors >> "));
+    $userThrow = strtolower(readline("Please enter your desired input. Rock, Paper or Scissors >> "));
 
-    if ($userThrow == "Rock")
+    if ($userThrow == "rock")
     {
         $userTrow = 0;
     }
-    elseif($userThrow == "Paper")
+    elseif($userThrow == "paper")
     {
         $userTrow = 1;
     }
-    elseif($userThrow == "Scissors")
+    elseif($userThrow == "scissors")
     {
         $userTrow = 2;
     }
@@ -25,44 +25,44 @@ function rpsUser ($userThrow)
 function rps ($userInpt, $genInpt)
 {
     if ($genInpt == $userInpt) 
-        {
-        $outcome = "Drew...";
-        }
+    {
+       $outcome = "Drew...";
+    }
         
-        elseif ($genInpt == 0 && $userInpt == 1) 
-        {
+    elseif ($genInpt == 0 && $userInpt == 1) 
+    {
         $outcome = "Win!";
-        }
+    }
         
-        elseif ($genInpt == 1 && $userInpt == 2) 
-        {
+    elseif ($genInpt == 1 && $userInpt == 2) 
+    {
         $outcome = "Win!";
-        }
+    }
         
-        elseif ($genInpt == 2 && $userInpt == 0) 
-        {
+    elseif ($genInpt == 2 && $userInpt == 0) 
+    {
         $outcome = "Win!";
-        }
+    }
         
-        elseif ($genInpt == 2 && $userInpt == 1) 
-        {
+    elseif ($genInpt == 2 && $userInpt == 1) 
+    {
         $outcome = "Lost...";
-        }
+    }
         
-        elseif ($genInpt == 1 && $userInpt == 0) 
-        {
+    elseif ($genInpt == 1 && $userInpt == 0) 
+    {
         $outcome = "Lost...";
-        }
+    }
         
-        elseif ($genInpt == 0 && $userInpt == 2) 
-        {
+    elseif ($genInpt == 0 && $userInpt == 2) 
+    {
         $outcome = "Lost...";
-        }
-        else
-        {
-            $outcome = "VAR_Why did this become an error...";
-            echo "Echo_Why did this become an error...";
-        }
+    }
+    else
+    {
+        $outcome = "VAR_Why did this become an error...";
+        echo "Echo_Why did this become an error...";
+     }
 
         echo "You $outcome";
 };
@@ -70,7 +70,6 @@ function rps ($userInpt, $genInpt)
 $genInpt = rand(0,2);
 echo "$genInpt\n"; // Bara så att jag kan see att det fungerar... 
 
- // Fungerar men fungerar inte... Får en undefined variable på $userThrow även fast den används... ?? Php 👍 
- //Och fråga inte varför jag använde 0-2 istället för Rock, paper scissors. Inte det smartase beslutet jag gjort...
+
 rpsUser();
 rps($genInpt, $userThrow);
