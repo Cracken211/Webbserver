@@ -71,5 +71,5 @@ $genInpt = rand(0,2);
 echo "$genInpt\n"; // Bara så att jag kan see att det fungerar... 
 
 
-rpsUser();
+$userThrow = rpsUser();
 rps($genInpt, $userThrow);
