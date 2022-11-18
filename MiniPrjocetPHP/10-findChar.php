@@ -3,7 +3,7 @@
 function getChar($string){
 
 $string = explode(" ", $string);
-for ($i = 0; $i <= count($string); $i++){
+for ($i = 0; $i < count($string); $i++){
     $stringOne = $string[$i];
     $stringTwo = $stringOne[0];
 
