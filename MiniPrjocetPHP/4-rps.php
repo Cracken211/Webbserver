@@ -19,7 +19,7 @@ function rpsUser ()
     {
         echo "Invalid answer";
     }
-    return $userThrow;
+    return $userTrow;
 }
 
 function rps ($userInpt, $genInpt)
