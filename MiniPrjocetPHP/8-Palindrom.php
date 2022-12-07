@@ -1,15 +1,10 @@
 <?php
-function checkPalindrom($string)
-{
-    $stringReverse = strrev($string);
-    if($string == $stringReverse){
-        echo "Your string is palindrom!\n";
-    } else{
-        echo "Your string is not palindrom...\n";
-    }   
+
+function isPalindrome($str) {
+
+    $str = preg_replace('/[^A-Za-z0-9]/', '', strtolower($str)); // De de good remover of the non good looking letters yes :) Finally found function. 
+    return $str == strrev($str);
 }
 
-echo "Check if your string is palindrom\n";
-$stringUser = readline("Enter string here >> ");
-
-checkPalindrom($stringUser);
+$str = readline("Enter text to check here >> ");
+echo isPalindrome($str) ? "true" : "false"; 
