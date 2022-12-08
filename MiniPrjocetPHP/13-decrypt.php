@@ -1,10 +1,24 @@
 <?php
+$key = intval(readline("Ange nyckeln >> "));
+$text = readline("Ange texten >> ");
 
-function decrypt($string){
-    $string = explode(" ", $string );
+$encrypted_text = "";
 
+for ($i = 0; $i < strlen($text); $i++) {
+  $ch = $text[$i];
 
+  if (ctype_alpha($ch)) {
+    if (ctype_upper($ch)) {
+      $ch = strtolower($ch);
+    }
 
+    $ch = chr((ord($ch) - ord('a') + $key) % 26 + ord('a'));
+
+    if (ctype_lower($ch)) {
+      $ch = strtoupper($ch);
+    }
+  }
+  $encrypted_text .= $ch;
 }
 
-decrypt("D E F G H I J K L M N O P Q R S T U V W X Y Z A B C"); // ABC last 3 from back, use to 
+echo $encrypted_text;
