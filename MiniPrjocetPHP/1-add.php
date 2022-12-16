@@ -10,7 +10,7 @@ if($x === 1)
 }
 
 echo "is $num1 + $num2 = $total?\n";
-$answer = mb_strtolower((string)readline("True or False? ")) === "true";
+$answer = strtolower((string)readline("True or False? ")) === "true";
 solve($num1 + $num2 == $total, $answer);
 
 function solve($problem, $answer)
