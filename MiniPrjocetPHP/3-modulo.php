@@ -1,6 +1,6 @@
 <?php
-(int)$num1 = rand(1, 100); 
-(int)$num2 = rand(1, 100);
+$num1 = rand(1, 100); 
+$num2 = rand(1, 100);
 
 function findRemainder($num, $devisor)
 {
