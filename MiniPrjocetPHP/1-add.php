@@ -13,7 +13,7 @@ echo "is $num1 + $num2 = $total?\n";
 $answer = strtolower((string)readline("True or False? ")) === "true";
 solve($num1 + $num2 == $total, $answer);
 
-function solve($problem, $answer)
+function solve($problem, $answer) // Fråga inte varför jag gjorde functionen såhär. Pallar inte fixa... 
 {
 
     if ($problem === $answer) 
