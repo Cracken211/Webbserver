@@ -1,154 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+<link rel="stylesheet" href="style.css">
 
 <head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega homapage</title>
+
 </head>
 
 <body>
-    <header>
-        <nav class="container">
-            <a href="?page=calc">Calc</a>
-            <a href="?page=ageCalc">AgeCalc</a>
-        </nav>
-    </header>
+    <div class="overlay">
+        <form class="chessboard" method="POST">
+                <?php
+        $letters = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
+        $gamePieces = [
+            "rook_W" => "♖",
+            "knight_W" => "♘",
+            "bishop_W" => "♗",
+            "king_W" => "♔",
+            "queen_W" => "♕",
+            "pawn_W" => "♙",
 
-    <?php
+            "rook_B" => "♜",
+            "knight_B" => "♞",
+            "bishop_B" => "♝",
+            "king_B" => "♚",
+            "queen_B" => "♛",
+            "pawn_B" => "♟︎"
+        ];
 
+        $board = [
+            "rook_B", "knight_B", "bishop_B", "king_B", "queen_B", "bishop_B", "knight_B", "rook_B",
+            "pawn_B", "pawn_B", "pawn_B", "pawn_B", "pawn_B", "pawn_B", "pawn_B", "pawn_B",
+            "", "", "", "", "", "", "", "",
+            "", "", "", "", "", "", "", "",
+            "", "", "", "", "", "", "", "",
+            "", "", "", "", "", "", "", "",
+            "pawn_W", "pawn_W", "pawn_W", "pawn_W", "pawn_W", "pawn_W", "pawn_W", "pawn_W",
+            "rook_W", "knight_W", "bishop_W", "king_W", "queen_W", "bishop_W", "knight_W", "rook_W",
+        ];
+        
+        function printBoard(){
+            global $board;
+            global $letters;
+            global $gamePieces;
 
-    $errorPage = '
-        <div class="container">
-            <p> No page found...  <br> </p>   
-            <p> Please verify your network connection or answers. </p>
-        </div> ';
+            $indexNum = 0;
 
-    $home = '
-            <div class="anwser">
-        </div>
-        <div class="container">  
-            <form method="get">  
-            
-            <label>First num </label> <br>  
-            <input type="number" name="num1" placeholder="Ex. 305"> <br> <br> 
-            
-            <label>Second num</label> <br>  
-                    <input type="number" name="num2" placeholder="Ex. 432">  <br> <br>
+            for ($row = 0; $row < 8; $row++) {
+                echo '<div class="row">';
+                for ($column = 0; $column < 8; $column++) {
+
+                    $icon = "";
+
+                    if(!$board[$indexNum] == "") {
+                        $icon = $gamePieces[$board[$indexNum]];
+                    }
+
+                    if(($indexNum + $row) % 2 == 0) {
+                        $tile = "square black";
+                    }
+                    else{
+                        $tile = "square white";
+                    }
+
+                    $indexNum++;
                     
-                    <label>Operator</label> <br>  
-                    <select name="op">
-                    <option value="+">+</option>
-                    <option value="-">-</option>
-                    <option value="/">/</option>
-                    <option value="*">*</option>
-                    </select>  <br> <br>  
-                    <input type="submit" value="Submit">  
-                    </form>
-                    </div>  
-                    
-                    ';
+                    echo '<button class="' . $tile . '" id="a1">' . $icon . '</button>'; 
 
-
-    $calculator = '
-                    <div class="anwser">
-                    
-                    </div>
-                    <div class="container">  
-                    <form method="get">  
-                    <input type="hidden" name="page" value="calc">
-                    <label>First num </label> <br>  
-                    <input type="number" name="num1" placeholder="Ex. 305"> <br> <br> 
-                    
-                <label>Second num</label> <br>  
-                    <input type="number" name="num2" placeholder="Ex. 432">  <br> <br>
-                    
-                    <label>Operator</label> <br>  
-                    <select name="op">
-                    <option value="+">+</option>
-                    <option value="-">-</option>
-                    <option value="/">/</option>
-                    <option value="*">*</option>
-                    </select>  <br> <br>  
-                    <input type="submit" value="Submit">  
-                    </form>
-                    </div>  
-                    ';
-
-
-
-    $ageCalculator = ' 
-                    <div class="container">   
-                    <form method="get"> 
-                    
-                    <label>Enter Age </label> <br>  
-                    <input type="number" name="age" placeholder="Ex. 21"> <br> <br>  
-                    
-                    <label>Enter Year</label> <br>  
-                    <input type="number" name="year" placeholder="Ex. 1993">  <br> <br>  
-                    <input type="submit" value="Submit">  
-                    </form>  
-                    </div>
-                    ';
-
-
-    function giveResponseCalc($num1, $num2, $op)
-    {
-        global $sum;
-
-        switch ($op) {
-            case "+":
-                $sum = $num1 + $num2;
-                break;
-            case "-":
-                $sum = $num1 - $num2;
-                break;
-            case "/":
-                $sum = $num1 / $num2;
-                break;
-            case "*":
-                $sum = $num1 * $num2;
-                break;
-            default:
-                echo "Error Switch"; //Switch
-                break;
-        }
-        return $sum;
-    }
-
-    if (isset($_GET["page"])) {
-        if ($_GET["page"] == "calc") {
-            echo $calculator;
-            if (isset($_GET["op"]) && isset($_GET["num1"]) && isset($_GET["num2"])) {
-                echo giveResponseCalc($_GET['num1'], $_GET['num2'], $_GET['op']);
-            } else {
-                echo "Enter all numbers and oporators!";
-            }
-        } elseif ($_GET["page"] == "ageCalc") {
-            echo $ageCalculator;
-            if (isset($_GET["age"]) && isset($_GET["year"])) {
-                $age = $_GET["age"];
-                $year = $_GET["year"];
-            } else {
-                echo "Enter all numbers and oporators!";
+                }
+                echo "</div>";
             }
         }
-    } else {
 
-    }
+        printBoard();
 
-
-    // Advanced miniräknare
-
-
-    
+        ?>
+        </form>
 
 
-    ?>
+    </div>
 
 </body>
-
-</html>
