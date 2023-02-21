@@ -53,25 +53,35 @@
 
                     if(!$board[$indexNum] == "") {
                         $icon = $gamePieces[$board[$indexNum]];
-                    }
-
+                    } 
                     if(($indexNum + $row) % 2 == 0) {
                         $tile = "square black";
-                    }
-                    else{
+                    } else{
                         $tile = "square white";
                     }
-
-                    $indexNum++;
                     
-                    echo '<button class="' . $tile . '" id="a1">' . $icon . '</button>'; 
+                    $indexNum++;
+                    echo '<button class="' . $tile . '" id="' . $letters[$row] . ($column + 1) . '">' . $icon . '</button>';
 
                 }
                 echo "</div>";
             }
+
+
+
         }
 
         printBoard();
+
+        function copyIcon($icon, $id) {
+
+            session_start(); 
+            $_SESSION["copy_icon"] = $icon; // Antony please take over
+            $_SESSION["copy_from"] = $id; // This do the copy of the icon in square
+
+        }
+
+        
 
         ?>
         </form>
